@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FCC:Build a Technical Documentation Page</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            width: 98%;
+            height: 100%;
+        }
+        #nav-box {
+            width: 20%;
+            height: 100%;
+            float: left;
+            /*position: fixed;*/
+        }
+        /*#navbar{
+            display: flex;
+            flex-direction: column;
+        }*/
+        #navbar header {
+            color: #000; 
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 40px;
+            font-weight: 600;
+            text-align: center;  
+        }
+        .nav-link {
+            color: #555;
+            display: block;
+            border-color: #000;
+            border-width: 2px 0;
+            border-style: solid;
+            border-bottom-width: 0;
+            text-align: center;
+            text-decoration: none;
+            padding: 20px;
+            font-size: 20px;
+        }
+        .nav-link-last {
+            border-bottom-width: 2px;
+        }
+        main {
+            width: 76%;
+            /*padding: 0 120px;*/
+            float: right;
+        }
+        main header{
+            color: #000;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 35px;
+        }
+        pre {
+            background-color: #d3d7d4;
+            font-size: 16px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            padding-left: 36px;
+        }
+        code {
+            background-color: #d3d7d4;
+            font-size: 16px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            padding: 1px 3px;
+        }
+        @media (max-width:1000px){
+            body{
+                max-width: 900px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script src="./bundle.js"></script>
+    <!--<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>-->
+    <div id="nav-box">    
+        <nav id="navbar">
+            <header>使用JSON</header>
+            <a href="#introduction" class="nav-link">Introduction</a>
+            <a href="#what_is_json" class="nav-link">What is JSON</a>
+            <a href="#json_structure" class="nav-link">JSON structure</a>
+            <a href="#arrays_as_json" class="nav-link">Arrays as JSON</a>
+            <a href="#other_notes" class="nav-link">Other notes</a>
+            <a href="#working_through_a_json_example" class="nav-link">Working through a JSON example</a>
+            <a href="#getting_started" class="nav-link">Getting started</a>
+            <a href="#obtaining_the_json" class="nav-link">Obtaining the JSON</a>
+            <a href="#populating_the_header" class="nav-link">Populating the header</a>
+            <a href="#creating_the_hero_information_cards" class="nav-link">Creating the hero information cards</a>
+            <a href="#converting_between_objects_and_text" class="nav-link">Converting between objects and text</a>
+            <a href="#summary" class="nav-link">Summary</a>
+            <a href="#reference" class="nav-link nav-link-last">Reference</a>
+        </nav>
+    </div>
+        <main id="main-doc">
+            <section class="main-section" id="introduction">
+                <header>Introduction</header>
+                <p>JavaScript 对象表示法（JSON）是用于将结构化数据表示为 JavaScript 对象的标准格式，通常用于在网站上表示和传输数据（例如从服务器向客户端发送一些数据，因此可以将其显示在网页上）。您会经常遇到它，所以在本文中，我们向您提供使用 JavaScript 处理 JSON 的所有工作，包括访问 JSON 对象中的数据项并编写自己的 JSON。</p>
+            </section>
+            <section class="main-section" id="what_is_json">
+                <header>What is JSON</header>
+                <p>JSON 是一种按照 JavaScript 对象语法的数据格式，这是 Douglas Crockford 推广的。虽然它是基于 JavaScript 语法，但它独立于JavaScript，这也是为什么许多程序环境能够读取（解读）和生成 JSON。<br>可以作为一个对象或者字符串存在，前者用于解读 JSON 中的数据，后者用于通过网络传输 JSON 数据。 这不是一个大事件—— JavaScript 提供一个全局的 可访问的 JSON 对象来对这两种数据进行转换。<br>一个 JSON 对象可以被储存在它自己的文件中，这基本上就是一个文本文件，扩展名为 <code>.json</code>， 还有 MIME type 用于 <code>application/json</code>。</p>
+            </section>
+            <section class="main-section" id="json_structure">
+                <header>JSON structure</header>
+                <p>我们已经可以推测出 JSON 对象就是基于 JavaScript 对象，而且这几乎是正确的。您可以把 JavaScript 对象原原本本的写入 JSON 数据——字符串，数字，数组，布尔还有其它的字面值对象。这允许您构造出一个对象树，如下：</p>
+                <pre>
+{
+    "squadName" : "Super hero squad",
+    "homeTown" : "Metro City",
+    "formed" : 2016,
+    "secretBase" : "Super tower",
+    "active" : true,
+    "members" : [
+        {
+            "name" : "Molecule Man",
+            "age" : 29,
+            "secretIdentity" : "Dan Jukes",
+            "powers" : [
+                "Radiation resistance",
+                "Turning tiny",
+                "Radiation blast"
+            ]
+        },
+        {
+            "name" : "Madame Uppercut",
+            "age" : 39,
+            "secretIdentity" : "Jane Wilson",
+            "powers" : [
+                "Million tonne punch",
+                "Damage resistance",
+                "Superhuman reflexes"
+            ]
+        },
+        {
+            "name" : "Eternal Flame",
+            "age" : 1000000,
+            "secretIdentity" : "Unknown",
+            "powers" : [
+                "Immortality",
+                "Heat Immunity",
+                "Inferno",
+                "Teleportation",
+                "Interdimensional travel"
+            ]
+        }
+    ]
+}</pre>
+                <p>如果我们要加载对象进入 JavaScript 程序，以保存为一个名为 superHeroes 对象为例，我们使用 . 或 [] 访问对象内的数据。如：</p>
+                <pre>
+superHeroes.hometown
+superHeroes["active"]</pre>
+                <p>为了访问对象中的对象，您只需简单地链式访问（通过属性名和数组索引）。例如，访问 superHeroes 对象中的 members 数组对象的第二个元素的 powers 数组对象的第三个元素，您可以这样做：</p>
+                <pre>superHeroes["members"][1]["powers"][2]</pre>
+                <ol>
+                    <li>首先我们有变量名 <code>superHeroes</code>，储存对象 。</li>
+                    <li>在对象中我们想访问 <code>members</code> 属性，所以我们使用 <code>["members"]</code>。</li>
+                    <li><code>members</code> 包含有对象数组，我们想要访问第二个元素，所以我们使用<code>[1]</code>。</li>
+                    <li>在对象内，我们想访问 <code>powers</code> 属性，所以我们使用 <code>["powers"]</code>。</li>
+                    <li><code>powers</code> 属性是一个包含英雄技能的数组。我们想要第三个，所以我们使用[2]。</li>
+                </ol>
+            </section>
+            <section class="main-section" id="arrays_as_json">
+                <header>Arrays as JSON</header>
+                <p>前面我们已经说过，”我们已经可以推测出 JSON 对象就是基于 JavaScript 对象，而且这几乎是正确的“——我们说几乎正确的原因是数组对象也是一种合法的 JSON 对象，例如：</p>
+                <pre>
+[
+    {
+        "name" : "Molecule Man",
+        "age" : 29,
+        "secretIdentity" : "Dan Jukes",
+        "powers" : [
+            "Radiation resistance",
+            "Turning tiny",
+            "Radiation blast"
+        ]
+    },
+    {
+        "name" : "Madame Uppercut",
+        "age" : 39,
+        "secretIdentity" : "Jane Wilson",
+        "powers" : [
+            "Million tonne punch",
+            "Damage resistance",
+            "Superhuman reflexes"
+        ]
+    }
+]</pre>
+                <p>上面是完全合法的 JSON。您只需要通过数组索引就可以访问数组元素，如<code>[0]["powers"][0]</code>。</p>
+            </section>
+            <section class="main-section" id="other_notes">
+                <header>Other notes</header>
+                <ul>
+                    <li>JSON 是一种纯数据格式，它只包含属性，没有方法。</li>
+                    <li>JSON 要求有两头的 { } 来使其合法。最安全的写法是有两边的括号，而不是一边。</li>
+                    <li>甚至一个错位的逗号或分号就可以导致 JSON 文件出错。您应该小心的检查您想使用的数据(虽然计算机生成的 JSON 很少出错，只要生成程序正常工作)。您可以通过像 JSONLint 的应用程序来检验 JSON。</li>
+                    <li>JSON 可以将任何标准合法的 JSON 数据格式化保存，不只是数组和对象。比如，一个单一的字符串或者数字可以是合法的 JSON 对象。虽然不是特别有用处……</li>
+                    <li>不像 JavaScript 标识符可以用作属性，在 JSON 中，只有字符串才能用作属性。</li>
+                </ul>
+            </section>
+            <section class="main-section" id="working_through_a_json_example">
+                <header>Working through a JSON example</header>
+                <p>好了，让我们通过运行这个示例来展示我们如何利用JSON数据。</p>
+            </section>
+            <section class="main-section" id="getting_started">
+                <header>Getting started</header>
+                <p>首先，拷贝我们的 heroes.html 和 style.css 文件。后者包含了用于页面的简单的 CSS ，前者包含了简单的 HTML body。</p>
+                <pre>
+&lt;header&gt;
+&lt;/header&gt;
+                            
+&lt;section&gt;
+&lt;/section&gt;</pre>
+                <p>添加 <code>&lt;script&gt;</code>元素来包含我们的 JavaScript 代码。当前它只有两行，获得了<code>&lt;header&gt;</code>和<code>&lt;section&gt;</code>的引用，保存在变量中。</p>
+                <pre>
+var header = document.querySelector('header');
+var section = document.querySelector('section');</pre>
+                <p>我们已经把 JSON 数据放在了GitHub 上面：https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json</p>
+            </section>
+            <section class="main-section" id="obtaining_the_json">
+                <header>Obtaining the JSON</header>
+                <p>为了载入 JSON 到页面中，我们将使用 一个名为 <code>XMLHTTPRequest</code> 的API（常称为XHR）。这是一个非常有用的 JavaScript 对象，使我们能够通过代码来向服务器请求资源文件(如：图片，文本，JSON，甚至HTML片段)，意味着我们可以更新小段内容而不用重新加载整个页面。这将有更多响应页面，听起来让人兴奋，但是这部分超出我们本部分的文章，所以就不多详述了。</p>
+                <ol>
+                    <li>
+                        <p>首先，我们将保存一个即将访问的 URL 作为变量。在您的 JavaScript 代码的底部添加下面的代码:</p>
+                        <pre>         
+var requestURL = 
+'https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json';</pre>
+                    </li>
+                    <li>
+                        <p>为了创建一个HTTP请求，我们需要创建一个HTTP请求对象，通过 new 构造函数的形式。在您最下面的代码中写入：</p>
+                        <pre>var request = new XMLHttpRequest();</pre>
+                    </li>
+                    <li>
+                        <p>现在我们需要使用 open() 函数打开一个新的请求，添加如下代码：</p>
+                        <pre>request.open('GET', requestURL);</pre>
+                        <p>这个函数至少含有两个参数，其它的是可选参数。对于示例我们只需要两个强制参数</p>
+                        <ul>
+                            <li>HTTP 方法，网络连接时使用。这个示例中 <code>GET</code> 就可以了，因为我们只要获得简单的数据。</li>
+                            <li>URL，用于指向请求的地址。我们使用之前保存的变量。</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p>接下来，添加，两行代码，我们设定 <code>responseType</code> 为 JSON，所以服务器将知道我们想要返回一个 JSON 对象，然后发送请求 : </p>
+                        <pre>
+request.responseType = 'json';
+request.send();</pre>
+                    </li>
+                    <li>
+                        <p>最后一点内容涉及相应来自服务器的返回数据，然后处理它，添加如下代码在您先前的代码下方：</p>
+                        <pre>
+request.onload = function() {
+    var superHeroes = request.response;
+    populateHeader(superHeroes);
+    showHeroes(superHeroes);
+}</pre>
+                    </li>
+                </ol>
+                <p>这儿我们保存了相应我们请求的数据(访问 <code>response</code> 属性) 于变量 <code>superHeroes</code> ;这个变量现在含有 JSON！我们现在把<code>superHeroes</code> 传给两个函数，第一个函数将会用正确的数据填充<code>&lt;header&gt;</code>，同时第二个函数将创建一个信息卡片，然后把它插入<code>&lt;section&gt;</code>中。<br>我们把代码包在事件处理函数中，当请求对象<code>load</code>事件触发时执行代码，这是因为请求对象<code>load</code>事件只有在请求成功时触发；这种方式可以保证事件触发时 <code>request.response</code> 是绝对可以访问的。</p>
+            </section>
+            <section class="main-section" id="populating_the_header">
+                <header>Populating the header</header>
+                <p>现在我们已经获得我们的JSON数据，让我们利用它来写两个我们使用的函数。首先，添加下面的代码于之前的代码下方：</p>
+                <pre>
+function populateHeader(jsonObj) {
+    var myH1 = document.createElement('h1');
+    myH1.textContent = jsonObj['squadName'];
+    header.appendChild(myH1);
+                          
+    var myPara = document.createElement('p');
+    myPara.textContent = 'Hometown: ' + jsonObj['homeTown'] + ' // Formed: ' + jsonObj['formed'];
+    header.appendChild(myPara);
+}</pre>
+                <p>我们称参数为 <code>jsonObj</code>，那也是为什么我们要在其中调用 JSON 对象。这儿我们首先使用 <code>createElement()</code> 创建了一个 <code>&lt;h1&gt;</code> 节点，将它的 <code>textContent</code> 设为 JSON 对象的 <code>squadName</code> 属性，然后通过 <code>appendChild()</code> 把它加入 <code>&lt;header&gt;</code>中。然后我们对段落做了相同的一件事情：创建，设置内容，追加到 <code>&lt;header&gt;</code>。唯一的不同在于它的内容设为一个与 JSON 内属性 <code>homeTown</code> 和 <code>formed</code> 相关联的字符串。</p>
+            </section>
+            <section class="main-section" id="creating_the_hero_information_cards">
+                <header>Creating the hero information cards</header>
+                <p>接下来，添加如下的函数到脚本代码底部，这个函数创建和展示了<code>superhero cards</code>：</p>
+                <pre>
+function showHeroes(jsonObj) {
+    var heroes = jsonObj['members'];
+        
+    for(i = 0; i < heroes.length; i++) {
+        var myArticle = document.createElement('article');
+        var myH2 = document.createElement('h2');
+        var myPara1 = document.createElement('p');
+        var myPara2 = document.createElement('p');
+        var myPara3 = document.createElement('p');
+        var myList = document.createElement('ul');
+                          
+        myH2.textContent = heroes[i].name;
+        myPara1.textContent = 'Secret identity: ' + heroes[i].secretIdentity;
+        myPara2.textContent = 'Age: ' + heroes[i].age;
+        myPara3.textContent = 'Superpowers:';
+          
+        var superPowers = heroes[i].powers;
+        for(j = 0; j < superPowers.length; j++) {
+            var listItem = document.createElement('li');
+            listItem.textContent = superPowers[j];
+            myList.appendChild(listItem);
+        }
+                          
+        myArticle.appendChild(myH2);
+        myArticle.appendChild(myPara1);
+        myArticle.appendChild(myPara2);
+        myArticle.appendChild(myPara3);
+        myArticle.appendChild(myList);
+                          
+        section.appendChild(myArticle);
+    }
+}</pre>
+                <p>首先，我们保存了 JSON 的 <code>members</code> 属性作为一个变量。这个数组含有多个带有英雄信息的对象。<br>接下来，我们使用一个循环来，遍历每个元素。对于每一个元素，我们：</p>
+                <ol>
+                    <li>创建几个元素： 一个 <code>&lt;article&gt;</code>,一个 <code>&lt;h2&gt;</code>, 三个 <code>&lt;p&gt;</code>, 和一个 <code>&lt;ul&gt;</code>。</li>
+                    <li>设置 <code>&lt;h2&gt;</code> 为当前英雄的 name。</li>
+                    <li>使用他们的<code>secretIdentity</code>, <code>age</code>, "Superpowers:" 介绍信息列表 填充三个段落来。</li>
+                    <li>保存 <code>powers</code> 属性于另一个变量 <code>superPowers</code>，包含英雄的 <code>superpowers</code>列表。</li>
+                    <li>使用另一个循环来遍历当前的英雄的 <code>superpowers</code> ，对于每一个元素我们创建<code>&lt;li&gt;</code>元素，把<code>superpower</code>放进去，然后使用<code>appendChild()</code>把 <code>listItem</code> 放入<code>&lt;ul&gt;</code> 元素中。</li>
+                    <li>最后一件事情是追加<code>&lt;h2&gt;</code>,<code>&lt;p&gt;</code>,还有<code>&lt;ul&gt;</code>进入 <code>&lt;article&gt;</code> (myArticle)。然后将<code>&lt;article&gt;</code> 追加到 <code>&lt;section&gt;</code>。追加的顺序很重要，因为他们将被展示在 HTML 中。</li>
+                </ol>
+            </section>
+            <section class="main-section" id="converting_between_objects_and_text">
+                <header>Converting between objects and text</header>
+                <p>上述示例就访问 JSON 而言是简单的，因为我们设置了 XHR 来访问 JSON 格式数据： </p>
+                <code>request.responseType = 'json';</code>
+                <p>但是有时候我们没有那么幸运，我们接收到一些 字符串作为 JSON 数据，然后我们想要将它转换为对象。当我们想要发送 JSON 数据作为信息，我们将需要转换它为字符串，我们经常需要正确的转换数据，幸运的是，这两个问题在web环境中是那么普遍以至于浏览器拥有一个内建的 JSON，包含以下两个方法。</p>
+                <ul>
+                    <li><code>parse()</code>: 以文本字符串形式接受JSON对象作为参数，并返回相应的对象。</li>
+                    <li><code>stringify()</code>: 接收一个对象作为参数，返回一个对应的JSON字符串。</li>
+                </ul>
+                <p>您可以看看我们 heroes-finished-json-parse.html 示例的第一个操作，除了返回的是 text，这做了一件与我们之前一模一样的事情，然后使用 <code> parse() </code> 来将他转换成为 JavaScript 对象。关键片段如下：</p>
+                <pre>
+request.open('GET', requestURL);
+request.responseType = 'text'; // now we're getting a string!
+request.send();
+                        
+request.onload = function() {
+    var superHeroesText = request.response; // get the string from the response
+    var superHeroes = JSON.parse(superHeroesText); // convert it to an object
+    populateHeader(superHeroes);
+    showHeroes(superHeroes);
+}</pre>
+                <p>正如您所想, <code>stringify()</code> 做相反的事情. 尝试将下面的代码输入您的浏览器 JS 控制台来看看会发生什么：</p>
+                <pre>
+var myJSON = { "name" : "Chris", "age" : "38" };
+myJSON
+var myString = JSON.stringify(myJSON);
+myString</pre>
+                <p>这儿我们创建了一个JavaScript 对象，然后检查了它包含了什么，然后用<code>stringify()</code> 将它转换成JSON字符串，最后保存返回值作为变量。然后再一次检查。</p>
+            </section>
+
+            <section class="main-section" id="summary">
+                <header>Summary</header>
+                <p>在这个文章中，我们给了您一个简单的示例来在自己的程序中使用 JSON，包括创建和处理 JSON，还有如何访问 JSON 内的数据。</p>
+            </section>
+
+            <section class="main-section" id="reference">
+                <header>Reference</header>
+                <p>All the documentation in this page is taken from <a href="#">MDN</a></p>
+            </section>
+
+        </main>
+</body>
+</html>

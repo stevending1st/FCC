@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FCC:Build a Survey Form</title>
+    <style>
+        h1,p {
+            text-align:center;
+        }
+        body {
+            background-color: #00ae9d;
+        }
+        .onerow {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin: 10px 0;
+        }
+        .onerow-right {
+            display: flex;
+            width: 30%;
+            justify-content: flex-end;
+
+        }
+        .onerow-left {
+            display: flex;
+            width: 30%;
+            justify-content: flex-start;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 80%;
+            background-color: #d3d7d4;
+            font-size: 15px;
+            line-height: 25px;
+            margin: 0 auto;
+        }
+        p {
+            width: 80%;
+            
+        }
+        button {
+            background-color: chocolate;
+            width: 220px;
+            height: 60px;
+        }
+    </style>
+</head>
+<body>
+    <script src="./bundle.js"></script>
+    <!--<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>-->
+    <div id="main">
+        <h1 id="title">个人信息表</h1>
+        <form id="survey-form">
+            <div class="onerow">
+                <p id="description"><em>个人信息表，就是个人信息统计的表噢~</em></p>
+            </div>
+            <div class="onerow">
+                <div class="onerow-right">
+                    <label for="name" id="name-label">姓名：</label>
+                </div>
+                <div class="onerow-left">
+                    <input type="text" id="name" name="name" placeholder="请输入姓名" required>
+                </div>
+            </div>
+            <div class="onerow">
+                <div class="onerow-right">
+                    <label for="sex" id="sex-label">性别：</label>
+                </div>
+                <div class="onerow-left">
+                    <div id="sex">
+                        <input type="radio" name="sex" id="man" value="man">
+                        <label for="man">男</label>
+                        <br>
+                        <input type="radio" name="sex" id="woman" value="woman">
+                        <label for="woman">女</label>
+                    </div>
+                </div>
+            </div>
+            <div class="onerow">
+                <div class="onerow-right">
+                    <label for="email" id="email-label">E-mail：</label>
+                </div>
+                <div class="onerow-left">
+                    <input type="email" id="email" name="email" placeholder="请输入E-mail" required>
+                </div>
+            </div>
+            <div class="onerow">
+                <div class="onerow-right">
+                    <label for="number" id="number-label">年龄：</label>
+                </div>
+                <div class="onerow-left">
+                    <input type="number" id="number" name="number" placeholder="请输入年龄" min="0" max="120">
+                </div>
+            </div>
+            <div class="onerow">
+                <div class="onerow-right">
+                    <label for="dropdown" id="dropdown-label">学历：</label>
+                </div>
+                <div class="onerow-left">
+                    <select id="dropdown" name="dropdown">
+                        <option value="primary-school">小学</option>
+                        <option value="junior-high-school">初中</option>
+                        <option value="high-school">高中</option>
+                        <option value="university-specialties">大专</option>
+                        <option value="undergraduate">本科</option>
+                        <option value="master-student">硕士研究生</option>
+                        <option value="Doctoral-student">博士研究生</option>
+                    </select>
+                </div>
+            </div>
+            <div class="onerow">
+                <div class="onerow-right">
+                    <label for="projects">喜欢的课程：</label>
+                </div>
+                <div class="onerow-left">
+                    <div id="projects">
+                        <input type="checkbox" id="web-design" name="projects" value="web-design">
+                        <label for="web-design">响应式 Web 设计</label>
+                        <br>
+                        <input type="checkbox" id="data-structures" name="projects" value="data-structures">
+                        <label for="data-structures">算法和数据结构</label>
+                        <br>
+                        <input type="checkbox" id="front-end-libraries" name="projects" value="front-end-libraries">
+                        <label for="front-end-libraries">前端库和框架</label>
+                        <br>
+                        <input type="checkbox" id="data-visualization" name="projects" value="data-visualization">
+                        <label for="data-visualization">数据可视化</label>
+                        <br>
+                        <input type="checkbox" id="apis-and-microservices" name="projects" value="apis-and-microservices">
+                        <label for="apis-and-microservices">API 和微服务</label>
+                        <br>
+                        <input type="checkbox" id="information-security" name="projects" value="information-security">
+                        <label for="information-security">信息安全和质量保证</label>
+                        <br>
+                        <input type="checkbox" id="interview-prep" name="projects" value="interview-prep">
+                        <label for="interview-prep">面试攻略</label>
+                    </div>
+                </div>
+            </div>
+            <div class="onerow">
+                <div class="onerow-right">
+                    <label for="more">我还有一些想说的：</label>
+                </div>
+                <div class="onerow-left">
+                    <textarea id="more" name="more" rows="3">我还想说...</textarea>
+                </div>
+            </div>
+            <div class="onerow">
+                <button type="submit" id="submit">我已完成，提交表单</button>
+            </div>
+        </form>
+    </div>  
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FCC:Build a Product Landing Page</title>
+    <style>
+        :root {
+            --row-flex-direction: row;
+        }
+        @media (max-width:1000px){
+            :root {
+                --row-flex-direction: column;
+            }
+        }
+        body {
+            background-color: #90d7ec;
+            padding: 0;
+            margin: 0;
+        }
+        ul {
+            list-style-type: none;
+            display: inline;
+        }
+        li {
+            display: inline;
+            margin: 0 30px;
+        }
+        header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-end;
+            background-color: #74787c;
+            height: 90px;
+            width: 100%;
+            position: fixed;
+            z-index: 99;
+        }
+        header img {
+            height: 90px;
+            width: 120px;
+        }
+        header ul {
+            line-height: 50px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            height: 270px;
+        }
+        #form-up {
+            height: 90px;
+            width: 100%;
+        }
+        .form-box {
+            display: flex;
+            justify-content: center;
+            width: 30%;
+        }
+        form #email {
+            width: 300px;
+            height: 35px;
+            border-radius: 10px;
+        }
+        form #submit {
+            width: 150px;
+            height: 25px;
+        }
+        #column-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .column-box-items {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            width: 70%;
+            height: 180px;
+        }
+        #column-box img {
+            width: 120px;
+            height: 120px;
+        }
+        #column-box div {
+            width: 70%;
+        }
+        #video-box {
+            width: 400px;
+            height: 300px;
+            margin: 0 auto;
+            padding: 50px 0;
+        }
+        video {
+            width: 400px;
+            height: 300px;   
+        }
+        .appreciate-box {
+            border-width: 1px;
+            border-color: #74787c;
+            border-style: solid;
+            border-radius: 10px;
+            width: 250px;
+            height: 308px;
+            display: flex;
+            flex-direction: column;
+        }
+        #appreciate {
+            display: flex;
+            flex-direction: var(--row-flex-direction, column);
+            justify-content: space-around;
+            align-items: center;
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .appreciate-box-up {
+            height: 45px;
+            line-height: 45px;
+            background-color: #74787c;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .appreciate-box-mid {
+            height: 140px;
+            line-height: 30px;
+        }
+        button {
+            width: 100px;
+            height: 45px;
+            background-color: #f47920;
+            border-radius: 10px;
+            font-size: 20px;
+            margin: 0 auto;
+        }
+        #footer {
+            background-color: #74787c;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            align-content: center;
+            height: 100px;
+            margin-top: 50px;
+        }
+        a {
+            color: #000;
+            outline: none;
+            text-decoration: none;
+            text-decoration: none;
+        }
+        #footer p{
+            padding-right: 30px;
+        }
+    </style>
+</head>
+<body>
+    <script src="./bundle.js"></script>
+    <!--<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>-->
+    
+    <div id="main">
+        <header id="header">
+            <img id="header-img" alt="Logo" src="https://bpic.588ku.com/element_banner/20/18/09/3cf6697eddaf4aa03b8e2b433b87d20d.jpg!/unsharp/true/compress/true">
+            <nav id="nav-bar">
+               <ul>
+                    <li><a href="#column-box" class="nav-link">栏目</a></li>
+                    <li><a href="#video-box" class="nav-link">视频</a></li>
+                    <li><a href="#appreciate" class="nav-link">赞赏</a></li>
+                    </ul>
+            </nav>
+        </header>
+        <form id="form" action="https://www.freecodecamp.org/email-submit">
+            <div id="form-up"></div>
+            <div class="form-box">
+                <h3>FreecodeCamp.one 新闻订阅</h3>
+            </div>
+            <div class="form-box">
+                <input id="email" type="email" placeholder="请输入E-mail" name="email">
+            </div>
+            <div class="form-box">
+                <input id="submit" type="submit" >
+            </div>
+        </form>
+        <div id="column-box">
+            <div class="column-box-items">
+                <img>
+                <div>
+                    <h2>编程疑难问题解答</h2>
+                    <p>本栏目主要对编程开发人员的实际技术难题进行答疑解惑，对编程应用中遇到的实际问题给出了准确、精彩的回答。</p>
+                </div>
+            </div>
+            <div class="column-box-items">
+                <img>
+                <div>
+                    <h2>典型范例</h2>
+                    <p>本栏目主要介绍当今比较流行的J编程技术、技巧以及它们所提供的函数、类等的灵活应用技术，旨在通过实用程序来讲解所应用的方法、技术与技巧。</p>
+                </div>
+            </div>
+            <div class="column-box-items">
+                <img>
+                <div>
+                    <h2>数据库</h2>
+                    <p>本栏目主要介绍Visual FoxPro、SQL Server、Oracle、DB2等数据库的新功能、新用法，以及利用这些数据库管理系统进行开发的经验、编程技术、技巧和方法。</p>
+                </div>
+            </div>
+        </div>
+        <div id="video-box">
+            <video src="https://www.bilibili.com/video/av24213916/" controls="controls" id="video"></video>
+        </div>
+        <div id="appreciate">
+            <div class="appreciate-box">
+                <div class="appreciate-box-up">小额赞赏</div>
+                <h3>￥5.00</h3>
+                <div class="appreciate-box-mid">一份赞赏<br>一份祝福<br>一份辛苦<br>相伴一路</div>
+                <button>赞赏</button>
+            </div>
+            <div class="appreciate-box">
+                <div class="appreciate-box-up">中额赞赏</div>
+                <h3>￥10.00</h3>
+                <div class="appreciate-box-mid">一份赞赏<br>一份祝福<br>一份辛苦<br>相伴一路</div>
+                <button>赞赏</button>
+            </div>
+            <div class="appreciate-box">
+                <div class="appreciate-box-up">大额赞赏</div>
+                <h3>￥15.00</h3>
+                <div class="appreciate-box-mid">一份赞赏<br>一份祝福<br>一份辛苦<br>相伴一路</div>
+                <button>赞赏</button>
+            </div>
+        </div>
+        <div id="footer">
+            <ul>
+                <li><a href="#">freeCodeCamp.org</a></li>
+                <li><a href="#">freeCodeCamp.com</a></li>
+                <li><a href="#">freeCodeCamp.one</a></li>
+            </ul>
+            <p>Copyright 2018, freeCodeCamp.one</p>
+        </div>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FCC:Build a Tribute Page</title>
+
+    <style>
+       #main {
+            display: flex;
+            flex-direction: column;
+        }
+        h1,#footer {
+            text-align: center;
+        }
+        #img-div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex-shrink:1;
+            /*width: 100%;*/
+        }
+        img {
+            flex-shrink:2;
+            max-width:90%;
+            display: block;
+            height: auto;  
+        }
+        #img-caption {
+            text-align: center;
+            font-style: italic;
+        }
+        h3 {
+            margin-bottom: 5px;
+        }
+        ul {
+            margin-top: 5px;
+            line-height: 25px;
+        }
+        #tribute-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: left;
+        }
+    </style>    
+</head>
+<body>
+    <script src="./bundle.js"></script>
+    <!--<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>-->
+    <!--contains all other elements-->
+    <div id="main">
+        <!-- contains a string (i.e. text) that describes the subject of the tribute page-->
+        <h1 id="title">freeCodeCamp.one</h1>
+        <div id="img-div">
+            <img id="image" src="https://camo.githubusercontent.com/60c67cf9ac2db30d478d21755289c423e1f985c6/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f66726565636f646563616d702f776964652d736f6369616c2d62616e6e65722e706e67" alt="FCC 中国">
+            <!--content describing the image-->
+            <p id="img-caption"> Learn to code and help nonprofits.</p>
+        </div>
+        <!--content describing the subject-->
+        <div id="tribute-info">
+            <h3>大事记</h3>
+            <ul>
+                <li><strong>2016.04.07</strong>-北京-中文社区1.0上线</li>
+                <li><strong>2017.01.01</strong>-苏州-举办首届年会</li>
+                <li><strong>2017.10.18</strong>-深圳-入选《公益白皮书》</li>
+                <li><strong>2018.01.01</strong>-成都-举办第二届年会</li>
+                <li><strong>2018.05.24</strong>-杭州-中国志愿者团聚</li>
+                <li><strong>2018.09.15</strong>-中国-中文社区2.0全新上线</li>
+            </ul>
+        </div>
+        <div id="footer">详情请访问<a id="tribute-link" href="http://freecodecamp.one/" target="_blank">freecodecamp.one</a></div>
+    </div>
+
+</body>
+
+</html>
